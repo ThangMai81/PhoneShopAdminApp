@@ -83,7 +83,7 @@ export default function LoginPage({ handleChangePage }) {
       }
 
       localStorage.setItem("admin-token", token);
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (err) {
       throw json({ message: err.message }, { status: err.status });
     }
