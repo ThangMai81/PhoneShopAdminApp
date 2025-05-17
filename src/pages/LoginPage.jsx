@@ -83,7 +83,7 @@ export default function LoginPage({ handleChangePage }) {
       }
 
       localStorage.setItem("admin-token", token);
-      window.location.href = "/"; // Chuyển hướng đến trang admin
+      navigate("/");
     } catch (err) {
       throw json({ message: err.message }, { status: err.status });
     }
