@@ -8,6 +8,7 @@ import { loader as AdminLoader } from "./pages/AdminPage";
 import { RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
+import { getCookie } from "./stores/Cookie";
 
 const router = createHashRouter([
   {
@@ -29,9 +30,10 @@ const router = createHashRouter([
 ]);
 
 function ProtectedRoute() {
-  const token = localStorage.getItem("admin-token");
+  const token = getCookie("admin-token");
 
   if (!token) {
+    window.alert("Please login again!");
     return <Navigate to="/login" replace />;
   }
 

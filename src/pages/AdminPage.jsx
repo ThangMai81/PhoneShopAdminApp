@@ -2,12 +2,13 @@ import { useLoaderData } from "react-router-dom";
 import ListProducts from "../components/ListProducts";
 import { useEffect, useState } from "react";
 import { json } from "react-router-dom";
+import { removeCookie } from "../stores/Cookie";
 export default function AdminPage() {
   const response = useLoaderData();
   const [products, setProducts] = useState(response.products);
   useEffect(() => {
     return () => {
-      localStorage.removeItem("admin-token");
+      removeCookie("admin-token");
     };
   }, []);
   function handleChange(e) {

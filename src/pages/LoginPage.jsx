@@ -73,7 +73,6 @@ export default function LoginPage({ handleChangePage }) {
       }
 
       const data = await response.json();
-      const token = data.token;
 
       // Kiểm tra role
       if (!response.ok) {
@@ -82,7 +81,6 @@ export default function LoginPage({ handleChangePage }) {
         return;
       }
 
-      localStorage.setItem("admin-token", token);
       navigate("/", { replace: true });
     } catch (err) {
       throw json({ message: err.message }, { status: err.status });
