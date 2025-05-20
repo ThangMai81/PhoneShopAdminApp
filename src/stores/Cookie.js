@@ -8,5 +8,5 @@ export function getCookie(name) {
   return null;
 }
 export function removeCookie(name) {
-  document.cookie = `auth-token=${name}; path=/; max-age=86400; SameSite=Lax; Secure`;
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=None; Secure`;
 }

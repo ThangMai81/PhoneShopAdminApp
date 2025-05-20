@@ -8,7 +8,7 @@ export default function AdminPage() {
   const [products, setProducts] = useState(response.products);
   useEffect(() => {
     return () => {
-      removeCookie("admin-token");
+      removeCookie("auth-token");
     };
   }, []);
   function handleChange(e) {

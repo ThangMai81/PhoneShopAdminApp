@@ -65,10 +65,11 @@ export default function LoginPage({ handleChangePage }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
         }
       );
       if (!response.ok) {
-        window.alert("Sai tài khoản hoặc mật khẩu");
+        window.alert("Wrong account or password");
         return;
       }
 
@@ -77,10 +78,10 @@ export default function LoginPage({ handleChangePage }) {
       // Kiểm tra role
       if (!response.ok) {
         // Hiển thị message từ back-end
-        window.alert(data.message || "Đăng nhập thất bại");
+        window.alert(data.message || "Login failed");
         return;
       }
-
+      window.alert("Login successfully");
       navigate("/", { replace: true });
     } catch (err) {
       throw json({ message: err.message }, { status: err.status });
@@ -97,6 +98,10 @@ export default function LoginPage({ handleChangePage }) {
         tài khoản và mật khẩu của admin là: <p>tk: admin@gmail.com</p> <p></p>
         mk: 123456789
       </div>
+      <div>
+        Chỗ này chưa config back-end với front-end để nhận diện role account
+      </div>
+      <div>Em đang vội làm project này, mong mentor thông cảm :D</div>
       <form className="absolute top-[10%] left-[35%] p-[20px] w-[400px] text-center border-2 border-neutral-300 shadow shadow-indigo-500/40 rounded-xl bg-white">
         <h1 className="italic mb-[30px]">Sign In</h1>
         <div className="grid grid-rows-2">
@@ -127,7 +132,7 @@ export default function LoginPage({ handleChangePage }) {
             />
             <input
               ref={passwordRef}
-              type="text"
+              type="password"
               placeholder={`${!pswValidation.isFocused ? "Password" : ""}`}
               className={`${inputClass}`}
               onChange={handleCheckValidatePsw}
@@ -144,7 +149,7 @@ export default function LoginPage({ handleChangePage }) {
           {error && <div className="error-message">{error}</div>}
           <button
             type="button"
-            className={`bg-neutral-700 text-xs text-white uppercase max-h-[50px] mt-[20px] ${
+            className={`bg-neutral-700 text-xs text-white uppercase max-h-[50px] mt-[20px] cursor-pointer ${
               // Not valid => add opacity
               !emailValidation || !pswValidation ? "opacity-20" : ""
             }`}
